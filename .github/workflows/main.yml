@@ -1,25 +1,32 @@
-name: 微信垃圾桶提醒
+name: 自动更新垃圾桶日历
 
 on:
   schedule:
-    # 每天 UTC 07:00 运行（对应新西兰标准时间 19:00）
-    - cron: '0 7 * * *' 
-  workflow_dispatch: # 允许手动点击运行
+    - cron: '0 0 * * 0' # 以后不需要每天跑了，改成每周日跑一次就能让未来两年的排期一直保持最新
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  run-script:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: 设置 Python 环境
-        uses: actions/setup-python@v4
+      - name: 设置 Python
+        uses: actions/setup-python@v5
         with:
           python-version: '3.10'
 
-      - name: 安装依赖
-        run: pip install -r requirements.txt
-
-      - name: 运行提醒脚本
+      - name: 生成日历文件
         run: python bin_reminder.py
+
+      - name: 提交并推送到仓库
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add bins.ics
+          git commit -m "自动更新日历排期" || echo "日历无需更新"
+          git push
