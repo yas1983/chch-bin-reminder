@@ -42,14 +42,14 @@ def get_bins_for_tomorrow(today):
 def send_wx_notification(bins_info):
     url = "https://wxpusher.zjiecode.com/api/send/message"
     
-    # 构造推送到微信的卡片内容
+    # 使用 Markdown 格式，并显式保留空的 uids 数组以符合严格接口规范
     payload = {
         "appToken": APP_TOKEN,
-        "content": f"<h2>🗑️ 基督城垃圾收集提醒</h2><br><b>明天是收垃圾日！</b><br><br>请在今晚把以下垃圾桶推到马路边（桶间距保持50厘米）：<br><br><b>{bins_info}</b>",
+        "content": f"### 🗑️ 基督城垃圾收集提醒\n\n**明天是收垃圾日！**\n\n请在今晚把以下垃圾桶推到马路边（桶间距保持50厘米）：\n\n**{bins_info}**",
         "summary": "🗑️ 明天该推垃圾桶啦！查看是哪两个桶", 
-        "contentType": 2, 
-        # 把 uids 删掉或注释掉，换成 topicIds
-        "topicIds": TOPIC_IDS 
+        "contentType": 3, 
+        "topicIds": TOPIC_IDS,
+        "uids": [] 
     }
     
     headers = {'Content-Type': 'application/json'}
