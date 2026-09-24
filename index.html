@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基督城垃圾桶提醒</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 50px 20px; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        p { color: #666; margin-bottom: 40px; font-size: 16px; line-height: 1.5; }
+        .btn { 
+            display: inline-block; 
+            background-color: #007bff; 
+            color: white; 
+            padding: 15px 30px; 
+            font-size: 20px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn:active { background-color: #0056b3; }
+        .tips { margin-top: 30px; font-size: 14px; color: #888; text-align: left; display: inline-block; max-width: 300px; }
+    </style>
+</head>
+<body>
+    <h1>🗑️ 垃圾桶提醒 (未来两年)</h1>
+    <p>点击下方按钮，将未来两年的收垃圾日期<br>一键导入到您的手机日历中。</p>
+    
+    <!-- 这里的 download 属性会强制安卓手机下载文件，而不是直接打开显示文字 -->
+    <a href="bins.ics" class="btn" download>📥 点击下载 / 安装日历</a>
+    
+    <div class="tips">
+        <b>💡 安卓手机提示：</b><br>
+        下载完成后，如果手机没有自动弹出，请在手机屏幕顶部的通知栏，或者“下载管理”中点击刚刚下载的 <b>bins.ics</b> 文件，选择使用“日历”打开并导入。
+    </div>
+</body>
+</html>
